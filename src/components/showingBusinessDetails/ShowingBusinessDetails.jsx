@@ -12,7 +12,6 @@ const ShowingBusinessDetails = observer((isAdmin) => {
         BusinessServices.initialBusinessData();
         console.log("אני פה ", BusinessServices.business)
     }, []);
-    
     return (
         <div style={{ width: "1500px", paddingBottom: "2%", marginBottom: "5%", boxShadow: "5px 5px 5px #9c27b0" }}>
 

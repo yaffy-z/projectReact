@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react'
+import { useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -8,8 +8,9 @@ import { Button } from '@mui/material'
 import BusinessServices from '../../stores/businessServices.js'
 import { observer } from 'mobx-react';
 
+
 const NewServiceForm = observer(({ onFormClose, getServices }) => {
-  
+
     const [serviceId, setServiceId] = useState('');
     const [name, setname] = useState('');
     const [serviceDescription, setServiceDescription] = useState('');
@@ -27,7 +28,9 @@ const NewServiceForm = observer(({ onFormClose, getServices }) => {
             servicePrice: servicePrice
 
         };
+        console.log(newService,"newService")
         BusinessServices.addService(newService);
+
         BusinessServices.getServices();
         getServices();
         onFormClose();

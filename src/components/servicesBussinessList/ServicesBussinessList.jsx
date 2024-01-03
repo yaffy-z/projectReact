@@ -9,7 +9,6 @@ import DisplaySingleService from '../displaySingleService/DisplaySingleService'
 const ServicesBussinessList = observer(({ isAdmin }) => {
     useEffect(() => {
         BusinessServices.getServices();
-
     }, [])
     const [isFormOpen, setIsFormOpen] = useState(false);
     useEffect(() => {

@@ -1,7 +1,7 @@
 import { observable, makeObservable, action, computed } from 'mobx';
 
 const meeting = {
-    serviceName: "",
+    name: "",
     serviceDescribtion: '',
     servicePrice: "",
     dateTime: '',
@@ -55,8 +55,8 @@ class MeetingStore {
     initialMeeting = async () => {
         const response = await fetch("http://localhost:8787/appointments");
         const data = await response.json();
-        console.log(data);
-        this.meetingsList = ([...data]);
+        const sortedData = [...data].sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
+        this.meetingsList = sortedData;
     }
 }
 export default new MeetingStore();

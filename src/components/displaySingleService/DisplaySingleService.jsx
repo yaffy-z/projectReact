@@ -15,7 +15,7 @@ const DisplaySingleService = ({ value, isAdmin }) => {
 
     return (
        
-            <div className='card col-4 p-relative' style={{ height: '250px'  }}>
+            <div className='card col-4 p-relative' style={{ height: '350px'  }}>
                 <div className="card-body"> <h2 className="card-title">
                     {value.name}</h2>
                     <div className="card-text">

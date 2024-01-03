@@ -1,6 +1,11 @@
 import { observable, makeObservable, action } from 'mobx';
 import Swal from 'sweetalert2';
-
+// const service = {
+//   serviceId: "",
+//   serviceName: "",
+//   serviceDescription: "",
+//   servicePrice: "",
+// }
 
 class BusinessServices {
   business = {
@@ -29,20 +34,25 @@ class BusinessServices {
     })
   }
   addService = async (service) => {
+     console.log(service,"serv")
     const response = await fetch("http://localhost:8787/service", {
-        method: "POST",
-        body: JSON.stringify(service),
-        headers: {
-            "Content-Type": "application/json",
-        },
+
+      method: "POST",
+      body: JSON.stringify(service),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     console.log(response.status)
-    if (response.status === 200) {
-        this.businessServicesList = ([...this.businessServicesList, service])
-        console.log(this.businessServicesList.length,"po")
+    if (response.status === 200)
+      this.businessServicesList = ([...this.businessServicesList, service])
+    
+  }
 
-    }
-}
+
+
+  
+   
 initialBusinessData = async () => {
   const response = await fetch("http://localhost:8787/businessData");
   const data = await response.json();
@@ -75,13 +85,26 @@ setBusinessData = async (bussinessData) => {
   
 }
 }
- 
+  // getServices = async () => {
+
+  //   const response = await fetch("http://localhost:8787/services");
+  //   const data = await response.json();
+
+  //   if (response.status === 200) {
+  //     this.businessServicesList = ([...data]);
+
+  //     this.businessServicesList = this.businessServicesList.filter(x => x.serviceId != service.serviceId)
+  //     this.businessServicesList = ([...this.businessServicesList])//1
+  //     console.log(this.businessServicesList.length)
+
+  //   }
+  // }
  
   getServices = async () => {
     const response = await fetch("http://localhost:8787/services");
     const data = await response.json();
-    const sortedData = [...data].sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
-    this.meetingsList = sortedData;
+    console.log(data);
+    this.businessServicesList = ([...data]);
   }
 }
 
