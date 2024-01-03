@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -6,12 +6,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Button } from '@mui/material'
 import BusinessServices from '../../stores/businessServices.js'
+import { observer } from 'mobx-react';
 
-
-const NewServiceForm = ({ onFormClose, getServices }) => {
-
+const NewServiceForm = observer(({ onFormClose, getServices }) => {
+  
     const [serviceId, setServiceId] = useState('');
-    const [serviceName, setServiceName] = useState('');
+    const [name, setname] = useState('');
     const [serviceDescription, setServiceDescription] = useState('');
     const [servicePrice, setServicePrice] = useState('');
 
@@ -22,12 +22,13 @@ const NewServiceForm = ({ onFormClose, getServices }) => {
 
         const newService = {
             serviceId: serviceId,
-            serviceName: serviceName,
+            name: name,
             serviceDescription: serviceDescription,
             servicePrice: servicePrice
 
         };
         BusinessServices.addService(newService);
+        BusinessServices.getServices();
         getServices();
         onFormClose();
     }
@@ -49,10 +50,10 @@ const NewServiceForm = ({ onFormClose, getServices }) => {
                     <TextField
                         style={{ margin: "10px 0 10px 0" }}
                         autoFocus
-                        id="serviceName"
+                        id="name"
                         label="Service name"
-                        value={serviceName}
-                        onChange={(event) => setServiceName(event.target.value)}
+                        value={name}
+                        onChange={(event) => setname(event.target.value)}
                     />
                     <TextField
                         style={{ margin: "10px 0 10px 0" }}
@@ -78,6 +79,6 @@ const NewServiceForm = ({ onFormClose, getServices }) => {
             </Dialog>
         </>
     )
-}
+})
 
 export default NewServiceForm

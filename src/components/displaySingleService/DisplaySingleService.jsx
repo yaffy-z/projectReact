@@ -15,11 +15,11 @@ const DisplaySingleService = ({ value, isAdmin }) => {
 
     return (
        
-            <div className='card col-4 p-relative' style={{ height: '350px'  }}>
+            <div className='card col-4 p-relative' style={{ height: '250px'  }}>
                 <div className="card-body"> <h2 className="card-title">
-                    {value.serviceName}</h2>
+                    {value.name}</h2>
                     <div className="card-text">
-                        <div>service:     {value.serviceName}</div>
+                        <div>service:     {value.name}</div>
                         <div>description: {value.serviceDescription}</div>
                         <div>price: {value.servicePrice}</div>
                          {isAdmin == ! true && (

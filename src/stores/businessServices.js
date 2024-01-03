@@ -1,12 +1,6 @@
-import { observable, makeObservable, action, computed } from 'mobx';
+import { observable, makeObservable, action } from 'mobx';
 import Swal from 'sweetalert2';
-const service = {
-  serviceId: "",
-  serviceName: "",
-  serviceDescription: "",
-  servicePrice: "",
-  // serviceImage: ''
-}
+
 
 class BusinessServices {
   business = {
@@ -81,26 +75,13 @@ setBusinessData = async (bussinessData) => {
   
 }
 }
-  getServices = async () => {
-
-    const response = await fetch("http://localhost:8787/services");
-    const data = await response.json();
-
-    if (response.status === 200) {
-      this.businessServicesList = ([...data]);
-
-      this.businessServicesList = this.businessServicesList.filter(x => x.serviceId != service.serviceId)
-      this.businessServicesList = ([...this.businessServicesList, service])
-      console.log(this.businessServicesList.length)
-
-    }
-  }
  
-  initialService = async () => {
+ 
+  getServices = async () => {
     const response = await fetch("http://localhost:8787/services");
     const data = await response.json();
-    console.log(data);
-    this.businessServicesList = ([...data]);
+    const sortedData = [...data].sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
+    this.meetingsList = sortedData;
   }
 }
 

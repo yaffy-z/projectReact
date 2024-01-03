@@ -4,7 +4,6 @@ import { observable, makeObservable, action, computed } from 'mobx';
 import { observer } from 'mobx-react';
 import MeetingStore from '../../stores/managementOfMeetings.js'
 
-
 const AppoinmentList = observer(() => {
     useEffect(() => {
         MeetingStore.initialMeeting();
